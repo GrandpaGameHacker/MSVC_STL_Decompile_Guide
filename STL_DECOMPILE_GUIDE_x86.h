@@ -8,7 +8,7 @@ I will write a guide on x64 at some point.
 
 first off When dealing with templated types like
 vector, map, list etc. its important to remember
-in your decompilation to create a new vector type for each templated type
+in your decompilation to create a new type for each templated type
 since modern decompilers do not support templates
 
 so say std::string vector would be
