@@ -15,14 +15,14 @@ so say std::string vector would be
 
 struct std::vector_string{
 	std::string* start, *end, *max;
-}
+};
 
 if the vector template uses a pointer like <MyClass*>
 then we use double pointers
 struct vector_pMyClass
 {
 	MyClass **start, **end, **max;
-}
+};
 
 secondly, reading the STL template code is helpful
 https://github.com/microsoft/STL/blob/main/stl/inc/
@@ -37,7 +37,7 @@ struct string
 		char lstr[16];
 	}
 	DWORD size, max; // max is always set to sizeof(lstr)-1
-}
+};
 
 /*
 Hints for a string in decompilation
@@ -78,13 +78,13 @@ struct map_node<K, V> //STL uses a red black tree implementation
 	bool bIsFirstNode, bColor;
 	K key;
 	V value;
-}
+};
 
 struct map
 {
 	map_node* head;
 	DWORD size;
-}
+};
 
 /*hints for a map type are
 
@@ -111,16 +111,16 @@ struct list_node //doubly linked list
 	list_node* forward;
 	list_node* back;
 	T value;
-}
+};
 
 struct list
 {
 	list_node* head;
 	size_t size;
-}
+};
 
 /* hints for list type are
-  if ( v49[1] == 357913941 ) // 357913941 is the max elements for a std::list<float>
+  if ( v49[1] == 357913941 ) // 357913941 is the max elements for a std::list<float> in 32bit
     std::_Xlength_error("list too long"); // call to Xlength_error like this is a sure sign
 
 v29 = operator new(sizeof(list_node));
@@ -135,14 +135,14 @@ template<typename T, size_t nBits>
 struct bitset
 {
 	unsigned long bits[nBits/sizeof(unsigned long)/8]
-}
+};
 
 // or
 
 struct bitset
 {
 	unsigned long long bits[nBits/sizeof(unsigned long long)/8]
-}
+};
 
 /*the template chooses long or long long based on the size of the bitset (nBits)
  for optimization reasons.
